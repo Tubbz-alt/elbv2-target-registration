@@ -7,7 +7,7 @@ For NTLM to work through ELB, two things are required;
 1) Session stickiness
 2) HTTP headers for Authentication
 
-## Challanges
+## Solution
 It is possible to resolve stickiness issue with CLB (classic Load Balancer) thanks to its application side cookie feature.
 
 However, for NTLM to work, NLB is required due to the fact that ALB and CLB overwrite authentication headers required for NTLM.
@@ -28,14 +28,9 @@ This solution is an alternative since it configures “a single” backend serve
 
 1. Fill in information for some parameters
 
-  `a. Primary instance id`
+  `a. Primary instance id` | `b. Secondary instance id` | `c. NLB Target Group ARN`
   
-  `b. Secondary instance id`
-  
-  `c. NLB Target Group ARN`
-  
-  Dockerfile. It is created by [following this tutorial](https://runnable.com/docker/python/dockerize-your-flask-application).
-2. I have changed it to accomodate latest version of ununtu and `python3`
-3. To build docker image `docker build -t todo-flask:latest .`
-4. To run the docker container `docker run -it -p 5000:8888 todo-flask `
+2. If backend servers are Windows (most likely), adjust the `sleep` interval (currently 20s but you might need to increase it. This is because it is not possible to register an instance to target group if it's "stopped"
+
+3. Also adjust the timeout value of the lambda function otherwise it got killed before it completes the `sleep` cycle.
 
