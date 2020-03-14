@@ -11,7 +11,7 @@ For NTLM to work through ELB, two things are required;
 It is possible to resolve stickiness issue with CLB (classic Load Balancer) thanks to its application side cookie feature.
 
 However, for NTLM to work, NLB is required due to the fact that ALB and CLB overwrite authentication headers required for NTLM.
-But NLB doesn’t support stickiness (it is possible in Ireland and some other regions though but not in every region at the time of writing).
+But NLB doesn’t support stickiness (although it wass possible in Ireland and some other regions at the time of writing but not in our region ).
  
 Therefore neither CLB nor NLB provided a complete solution to run 2x load-balanced backend servers with NTLM authentication enabled.
  
