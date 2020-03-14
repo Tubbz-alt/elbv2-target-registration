@@ -3,9 +3,9 @@ import json
 from time import sleep as sleep
 
 # DO NOT forget to modify the instance ids under register_instance() function
-region = 'region-name' # Region name
-tgARN = 'arn:aws:elasticloadbalancing:regionName:Account:targetgroup/tg-name/id' # TargetGroup ARN
-tgInstancePort = 443 # TargetGroup's instance ports (integer)
+region = 'region-name' # Region name --> MODIFY HERE
+tgARN = 'arn:aws:elasticloadbalancing:regionName:Account:targetgroup/tg-name/id' # TargetGroup ARN --> MODIFY HERE
+tgInstancePort = 443 # TargetGroup's instance ports (integer) --> MODIFY HERE
 
 elb = boto3.client('elbv2')
 ec2 = boto3.client('ec2', region_name=region)
@@ -45,8 +45,8 @@ def register_instance():
     print ('TASK: Other instance is being registered...')
     backendServerId = find_unhealthy_instance()
     # modify the instance ids below
-    defInstance = 'i-xxxx' # default-instance
-    bkpInstance = 'i-yyyy' # backup-instance
+    defInstance = 'i-xxxx' # default-instance --> MODIFY HERE
+    bkpInstance = 'i-yyyy' # backup-instance --> MODIFY HERE
     if backendServerId == defInstance:
         bkpInstance = bkpInstance
     else:
