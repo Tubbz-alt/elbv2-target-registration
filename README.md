@@ -30,7 +30,8 @@ This solution is an alternative since it configures “a single” backend serve
   `a. Primary instance id
   b. Secondary instance id
   c. NLB Target Group ARN`
-  `Dockerfile`. It is created by [following this tutorial](https://runnable.com/docker/python/dockerize-your-flask-application).
+  
+  Dockerfile. It is created by [following this tutorial](https://runnable.com/docker/python/dockerize-your-flask-application).
 2. I have changed it to accomodate latest version of ununtu and `python3`
 3. To build docker image `docker build -t todo-flask:latest .`
 4. To run the docker container `docker run -it -p 5000:8888 todo-flask `
