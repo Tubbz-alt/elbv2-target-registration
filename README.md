@@ -27,8 +27,11 @@ This solution is an alternative since it configures “a single” backend serve
 ### Adjustments
 
 1. Fill in information for some parameters
+
   `a. Primary instance id`
+  
   `b. Secondary instance id`
+  
   `c. NLB Target Group ARN`
   
   Dockerfile. It is created by [following this tutorial](https://runnable.com/docker/python/dockerize-your-flask-application).
