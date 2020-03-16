@@ -43,11 +43,11 @@ def deregister_instance():
 
 def register_instance():
     print ('TASK: Other instance is being registered...')
-    backendServerId = find_unhealthy_instance()
+    unhealthyInstanceId = find_unhealthy_instance()
     # modify the instance ids below
     defInstance = 'i-xxxx' # default-instance <-- MODIFY HERE
     bkpInstance = 'i-yyyy' # backup-instance <-- MODIFY HERE
-    if backendServerId == defInstance:
+    if unhealthyInstanceId == defInstance:
         bkpInstance = bkpInstance
     else:
         bkpInstance = defInstance
