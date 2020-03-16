@@ -1,6 +1,7 @@
 ### files and folders
 /others
 *.orig
+*.code-workspace
 
 # Binaries for programs and plugins
 *.exe

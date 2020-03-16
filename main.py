@@ -3,9 +3,9 @@ import json
 from time import sleep as sleep
 
 # DO NOT forget to modify the instance ids under register_instance() function
-region = 'region-name' # Region name --> MODIFY HERE
-tgARN = 'arn:aws:elasticloadbalancing:regionName:Account:targetgroup/tg-name/id' # TargetGroup ARN --> MODIFY HERE
-tgInstancePort = 443 # TargetGroup's instance ports (integer) --> MODIFY HERE
+region = 'region-name' # Region name <-- MODIFY HERE
+tgARN = 'arn:aws:elasticloadbalancing:regionName:Account:targetgroup/tg-name/id' # TargetGroup ARN <-- MODIFY HERE
+tgInstancePort = 443 # TargetGroup's instance ports (integer) <-- MODIFY HERE
 
 elb = boto3.client('elbv2')
 ec2 = boto3.client('ec2', region_name=region)
@@ -45,8 +45,8 @@ def register_instance():
     print ('TASK: Other instance is being registered...')
     backendServerId = find_unhealthy_instance()
     # modify the instance ids below
-    defInstance = 'i-xxxx' # default-instance --> MODIFY HERE
-    bkpInstance = 'i-yyyy' # backup-instance --> MODIFY HERE
+    defInstance = 'i-xxxx' # default-instance <-- MODIFY HERE
+    bkpInstance = 'i-yyyy' # backup-instance <-- MODIFY HERE
     if backendServerId == defInstance:
         bkpInstance = bkpInstance
     else:
@@ -56,10 +56,8 @@ def register_instance():
     if bkpInstanceState == 'stopped':
         print ('INFO: Starting backup instance')
         ec2.start_instances(InstanceIds=[bkpInstance])
-        # sleep value has to be adjusted
-        # if OS is windows, increase this value
-        # also adjust aws lambda function's timeout value accordingly
-        sleep(20)
+        # DO NOT FORGET to adjust aws lambda function's timeout value accordingly (Example: 30 secs)
+        sleep(20)   # wait for instance state to change into "running"
     elb.register_targets(
         TargetGroupArn=tgARN,
         Targets=[
